@@ -90,9 +90,7 @@ def pass_scope(p, c):
 def shares_scope(s):
     """Check shares input"""
     try:
-        s = int(s)
-        if s > 0:
-            return True
+        return int(s) > 0
 
     except ValueError:
         return False
