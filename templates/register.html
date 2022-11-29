@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <form action="/register" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" id="password" name="password" placeholder="Password" type="password">
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" id="password" name="confirmation" placeholder="Confirm password" type="password">
+        </div>
+        <button class="btn btn-primary" id="activebtn" type="submit">Register</button>
+        <button class="btn btn-primary" id="loadingbtn" type="button" disabled hidden>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Registering...
+        </button>
+    </form>
+{% endblock %}
+
+{% block script %}
+    <script>
+        const activeBtn = document.getElementById('activebtn')
+
+        activeBtn.addEventListener('click', () => {
+            activeBtn.setAttribute('hidden', '')
+            document.getElementById('loadingbtn').removeAttribute('hidden')
+        })
+    </script>
+{% endblock %}

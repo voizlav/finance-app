@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Buy
+{% endblock %}
+
+{% block main %}
+    <form action="/buy" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="symbol" name="symbol" placeholder="Symbol" type="text">
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" id="shares" name="shares" placeholder="Shares" type="number">
+        </div>
+        <button class="btn btn-primary" id="activebtn" type="submit">Buy</button>
+        <button class="btn btn-primary" id="loadingbtn" type="button" disabled hidden>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Buying...
+        </button>
+    </form>
+{% endblock %}
+
+{% block script %}
+    <script>
+        const activeBtn = document.getElementById('activebtn')
+
+        activeBtn.addEventListener('click', () => {
+            activeBtn.setAttribute('hidden', '')
+            document.getElementById('loadingbtn').removeAttribute('hidden')
+        })
+    </script>
+{% endblock %}

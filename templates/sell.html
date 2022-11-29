@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell
+{% endblock %}
+
+{% block main %}
+    <div id="sellmenu">
+        <form action="/sell" method="post">
+            <select class="form-select mb-3" name="symbol" style="max-width: 12rem;">
+                <option value="" selected disabled>Symbol</option>
+                {% for stock in portfolio %}
+                <option value={{ stock.symbol }}>{{ stock.symbol }}</option>
+                {% endfor %}
+            </select>
+            <div class="mb-3">
+                <input class="form-control mx-auto w-auto" name="shares" placeholder="Shares" type="number" style="max-width: 12rem;">
+            </div>
+            <button class="btn btn-primary" id="activebtn" type="submit">Sell</button>
+            <button class="btn btn-primary" id="loadingbtn" type="button" disabled hidden>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Selling...
+            </button>
+        </form>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        const activeBtn = document.getElementById('activebtn')
+
+        activeBtn.addEventListener('click', () => {
+            activeBtn.setAttribute('hidden', '')
+            document.getElementById('loadingbtn').removeAttribute('hidden')
+        })
+    </script>
+{% endblock %}

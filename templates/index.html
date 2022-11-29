@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+<div class="m-4 shadow p-3 mb-5 bg-body rounded">
+    <table class="table table-hover table-borderless">
+        <thead class="table-primary">
+            <tr>
+                <th scope="col">Symbol</th>
+                <th scope="col">Name</th>
+                <th scope="col">Shares</th>
+                <th scope="col">Price</th>
+                <th scope="col">TOTAL</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in portfolio %}
+            <tr>
+                <td>{{ stock.symbol }}</td>
+                <td>{{ stock.name }}</td>
+                <td>{{ stock.shares }}</td>
+                <td>{{ stock.current_price }}</td>
+                <td>{{ stock.total_price }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tbody>
+            <tr>
+                <td colspan="5"></td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><b>Stock</b></td>
+                <td class="text-success">{{ stock }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><b>Cash</b></td>
+                <td class="text-success">{{ cash }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><b>TOTAL</b></td>
+                <td class="text-success" data-bs-toggle="tooltip" data-bs-placement="left" title="Tooltip on left"><b>{{ total }}</b></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}
